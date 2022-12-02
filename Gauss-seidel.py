@@ -6,7 +6,7 @@ x=numpy.zeros((m))
 
 vector=numpy.zeros((n)) #Crear un vector que tenga la dimension n
 comp=numpy.zeros((m))
-error=[]  #Se declara como una lista
+error=[]  #Se declara como una lista 
 
 
 
@@ -32,6 +32,25 @@ while k < iteracion:
             if (c != r):
                 suma=suma+matrix[r,c]*x[c]               
         x[r]=(vector[r]-suma)/matrix[r,r]
-
-
+        print("x[" + str(r)+"]: "+ str(x[r]))
+    del error[:]
     #Comprobación
+    for r in range(0,m):
+        suma=0
+        for c in range(0,n):
+            suma=suma+matrix[r,c]*x[c]
+
+        comp[r]=suma
+        dif=abs(comp[r]-vector[r])
+        error.append(dif)
+        print("Error en x[", r,"]= ",error[r])
+    
+    print("Iteraciones ", k)
+    if all (i<=tolerancia for i in error) == True:
+        break
+
+print("Programa terminado") 
+
+
+
+
